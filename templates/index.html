@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Domain Service Manager</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        input, button {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+        }
+        input {
+            flex: 1 1 200px;
+            background-color: #2c2c2c;
+            color: #ffffff;
+        }
+        input::placeholder {
+            color: #aaa;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #90caf9;
+        }
+        a {
+            color: #81d4fa;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .domain-type {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        .delete-form {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .delete-button {
+            background-color: #e53935;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .delete-button:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <h1>🗂️ Domain Service Manager</h1>
+
+    <form method="POST">
+        <input name="name" placeholder="Service Name" required>
+        <input name="local" placeholder="Local IP (e.g. http://192.168.1.100)" required>
+        <input name="public" placeholder="Public Domain (e.g. https://example.com)">
+        <button type="submit">Add</button>
+    </form>
+
+    {% for d in domains %}
+        <div class="card">
+            <h2>{{ d.name }}</h2>
+            <p>
+                🖥️ <strong>Local:</strong> <a href="{{ d.local }}" target="_blank" rel="noopener noreferrer">{{ d.local }}</a><br>
+                🌐 <strong>Public:</strong>
+                {% if d.public %}
+                    <a href="{{ d.public }}" target="_blank" rel="noopener noreferrer">{{ d.public }}</a>
+                {% else %}
+                    <em style="color:#888;">Not available</em>
+                {% endif %}
+            </p>
+            <form method="POST" action="{{ url_for('delete_domain', id=d.id) }}" class="delete-form" onsubmit="return confirm('Delete this domain?');">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+
+        </div>
+    {% endfor %}
+</body>
+</html>
