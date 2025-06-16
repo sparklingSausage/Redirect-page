@@ -32,4 +32,5 @@ python app.py
 ```
 
 #### Screenshots
+Outdated, gonna update soon
 ![](/screenshot.png?raw=true "Image of the UI")
