@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Domain Service Manager</title>
     <style>
+        /* (keep the existing dark mode styles you have) */
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #121212;
@@ -98,6 +99,7 @@
     <form method="POST">
         <input name="name" placeholder="Service Name" required>
         <input name="local" placeholder="Local IP (e.g. http://192.168.1.100)" required>
+        <input name="dns" placeholder="e.g. http://web-server/example-page">
         <input name="public" placeholder="Public Domain (e.g. https://example.com)">
         <button type="submit">Add</button>
     </form>
@@ -107,6 +109,7 @@
             <h2>{{ d.name }}</h2>
             <p>
                 🖥️ <strong>Local:</strong> <a href="{{ d.local }}" target="_blank" rel="noopener noreferrer">{{ d.local }}</a><br>
+                🛜 <strong>Dns:</strong> <a href="{{ d.dns }}" target="_blank" rel="noopener noreferrer">{{ d.dns }}</a><br>
                 🌐 <strong>Public:</strong>
                 {% if d.public %}
                     <a href="{{ d.public }}" target="_blank" rel="noopener noreferrer">{{ d.public }}</a>

@@ -1,5 +1,5 @@
 # Redirect-page
-Simple page to keep track of your public/private domains
+Simple page to keep track of your public/private/dns domains
 This repository is not actively maintained, tho if you encounter a bug feel free to open a new issue
 
 ### What you'll need

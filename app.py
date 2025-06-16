@@ -21,6 +21,7 @@ def index():
     if request.method == 'POST':
         name = request.form['name']
         local = request.form['local']
+        dns = request.form['dns']
         public = request.form['public']
 
         domains = load_domains()
@@ -28,6 +29,7 @@ def index():
             'id': str(uuid.uuid4()),
             'name': name,
             'local': local,
+            'dns': dns,
             'public': public
         })
         save_domains(domains)
