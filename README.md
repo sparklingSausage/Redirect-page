@@ -16,7 +16,7 @@ Run it using the [Docker Compose](docker-compose.yml)
 services:
   domain-manager:
     container_name: domain-manager
-    image: latenightweeb/redirect:latest
+    image: sparklingsausage/redirect:latest
     ports:
       - "5000:5000"
     volumes:
